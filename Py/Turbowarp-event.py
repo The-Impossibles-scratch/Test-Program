@@ -2,10 +2,10 @@ import websocket
 import json
 import threading
 
-project_id = "あなたのプロジェクトID"
-username = "PythonBot"
+project_id = ""
+username = ""
 
-first_handshake_done = False  # 最初のハンドシェイク確認用フラグ
+first_handshake_done = False
 
 def on_message(ws, message):
     global first_handshake_done
@@ -27,7 +27,7 @@ def on_message(ws, message):
         if data.get("method") == "set":
             var_name = data["name"].replace("☁ ", "")
             value = data["value"]
-            user = data.get("user", "?")  # Scratch側はuser情報を送ってこないので無い場合が多い
+            user = data.get("user", "?")
             print(f"[EVENT] {user} set {var_name} = {value}")
 
     # 最初のメッセージを受け取ったらフラグを立てる
